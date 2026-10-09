@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forever Together | Wedding Invitation</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Georgia,serif;
+ background:#fffaf0;
+ color:#67452e;
+ text-align:center;
+}
+.hero{
+ min-height:100vh;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ padding:25px;
+ background:linear-gradient(135deg,#fffaf0,#f5dfc1,#fffaf0);
+}
+h1{
+ font-size:clamp(38px,9vw,65px);
+ color:#a87937;
+ margin:15px;
+}
+h2{color:#a87937}
+button,.btn{
+ background:#a87937;
+ color:white;
+ border:0;
+ padding:13px 22px;
+ border-radius:25px;
+ cursor:pointer;
+ text-decoration:none;
+ display:inline-block;
+ margin:6px;
+}
+section{
+ padding:55px 18px;
+ border-bottom:1px solid #ead9bd;
+}
+.card{
+ background:white;
+ padding:22px;
+ margin:15px auto;
+ max-width:500px;
+ border-radius:18px;
+ box-shadow:0 5px 20px #b99b7025;
+}
+.gallery{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;
+ max-width:600px;
+ margin:auto;
+}
+.gallery img{
+ width:100%;
+ height:180px;
+ object-fit:cover;
+ border-radius:12px;
+}
+input,textarea,select{
+ width:100%;
+ padding:12px;
+ margin:7px 0;
+ border:1px solid #d7bd94;
+ border-radius:8px;
+ font:inherit;
+}
+#countdown{font-size:22px;font-weight:bold}
+footer{padding:25px;background:#f5dfc1}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+ <p>✦ TOGETHER WITH THEIR FAMILIES ✦</p>
+ <p>YOU ARE CORDIALLY INVITED TO CELEBRATE</p>
+ <div style="font-size:45px">💍</div>
+ <h1>Aarav & Ananya</h1>
+ <p>Two hearts, one beautiful journey.</p>
+ <p>INVITE YOU TO THEIR WEDDING</p>
+ <button onclick="document.getElementById('invitation').scrollIntoView({behavior:'smooth'})">
+ Open Invitation 💌
+ </button>
+ <button onclick="toggleMusic()">🎵 Play / Pause Music</button>
+ <audio id="music" loop></audio>
+ <p style="font-size:13px">Replace the sample details with your wedding information.</p>
+</div>
+
+<section id="invitation">
+ <h2>With Love & Blessings</h2>
+ <div class="card">
+  <p>Two families, two hearts, one forever.</p>
+  <h2>Aarav ❤️ Ananya</h2>
+  <p>Request the pleasure of your company at their wedding.</p>
+  <p>📅 25 December 2026</p>
+  <p>📍 The Wedding Celebration</p>
+ </div>
+</section>
+
+<section>
+ <h2>Countdown to Forever ⏳</h2>
+ <div id="countdown">Loading countdown...</div>
+</section>
+
+<section>
+ <h2>Our Beautiful Memories 📸</h2>
+ <div class="gallery">
+  <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt="Wedding celebration">
+  <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500" alt="Wedding couple">
+  <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500" alt="Wedding ceremony">
+  <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=500" alt="Wedding flowers">
+ </div>
+ <p>Our story, our memories, our forever.</p>
+</section>
+
+<section>
+ <h2>Wedding Celebrations 🥂</h2>
+ <div class="card">
+  <h3>🌼 Haldi</h3>
+  <p>24 December · 11:00 AM</p>
+  <h3>🎶 Mehendi & Sangeet</h3>
+  <p>24 December · 6:00 PM</p>
+  <h3>💍 Wedding Ceremony</h3>
+  <p>25 December · 7:00 PM</p>
+  <h3>🎉 Reception</h3>
+  <p>26 December · 7:00 PM</p>
+ </div>
+</section>
+
+<section>
+ <h2>Find Our Venue 📍</h2>
+ <div class="card">
+  <p>Replace this with your actual wedding venue and address.</p>
+  <a class="btn" target="_blank" rel="noopener"
+  href="https://maps.google.com/">Get Directions</a>
+ </div>
+</section>
+
+<section>
+ <h2>Your Blessings Are Our Gift 🎁</h2>
+ <div class="card">
+  <p>Your love and blessings mean everything to us.</p>
+  <p>Shagun UPI ID: Add your verified UPI ID</p>
+  <p>Upload your genuine payment QR code here.</p>
+  <p style="font-size:13px">Demo section: payments are not configured.</p>
+ </div>
+</section>
+
+<section>
+ <h2>Will You Join Us? 💌</h2>
+ <div class="card">
+  <form id="rsvp">
+   <input id="guest" placeholder="Your name" required>
+   <select id="attendance" required>
+    <option value="">Will you attend?</option>
+    <option>Yes, I'll be there!</option>
+    <option>Sorry, I can't attend</option>
+   </select>
+   <input id="guests" type="number" min="1" max="20"
+   value="1" placeholder="Number of guests" required>
+   <button type="submit">Confirm Attendance</button>
+  </form>
+  <p id="response"></p>
+ </div>
+</section>
+
+<section>
+ <h2>Send Your Wishes ❤️</h2>
+ <div class="card">
+  <textarea id="wish" placeholder="Write your blessings..."></textarea>
+  <button onclick="sendWish()">Send Wishes</button>
+  <div id="wishes"></div>
+ </div>
+</section>
+
+<section>
+ <h2>Share the Happiness 💌</h2>
+ <button onclick="shareInvite()">Share Invitation</button>
+ <button onclick="window.print()">Print / Save PDF</button>
+</section>
+
+<footer>
+ <p>Made with ❤️ for Aarav & Ananya</p>
+ <p>We can't wait to celebrate with you!</p>
+</footer>
+
+<script>
+// Change this date and time to your actual wedding date.
+const weddingDate = new Date("2026-12-25T19:00:00");
+
+function updateCountdown(){
+ const diff = weddingDate.getTime() - Date.now();
+ const el = document.getElementById("countdown");
+
+ if(diff <= 0){
+  el.textContent = "Today is the day! Let love shine! ❤️";
+  return;
+ }
+
+ const days = Math.floor(diff / 86400000);
+ const hours = Math.floor(diff / 3600000) % 24;
+ const mins = Math.floor(diff / 60000) % 60;
+ const secs = Math.floor(diff / 1000) % 60;
+
+ el.textContent = `${days} Days ${hours} Hours ${mins} Minutes ${secs} Seconds`;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+function toggleMusic(){
+ const music = document.getElementById("music");
+ if(!music.src){
+  alert("Add a licensed music file URL to enable the music player.");
+  return;
+ }
+ if(music.paused) music.play();
+ else music.pause();
+}
+
+document.getElementById("rsvp").addEventListener("submit",function(e){
+ e.preventDefault();
+ const name = document.getElementById("guest").value;
+ const status = document.getElementById("attendance").value;
+ const guests = document.getElementById("guests").value;
+
+ document.getElementById("response").textContent =
+ `Thank you, ${name}! Your response: ${status}. Guests: ${guests}. Demo only — response has not been saved to a database.`;
+});
+
+function sendWish(){
+ const input = document.getElementById("wish");
+ const message = input.value.trim();
+ if(!message) return;
+
+ const p = document.createElement("p");
+ p.textContent = "❤️ " + message;
+ document.getElementById("wishes").appendChild(p);
+ input.value = "";
+}
+
+async function shareInvite(){
+ try{
+  if(navigator.share){
+   await navigator.share({
+    title:"Wedding Invitation",
+    text:"Join us to celebrate Aarav & Ananya!",
+    url:location.href
+   });
+  }else{
+   await navigator.clipboard.writeText(location.href);
+   alert("Invitation link copied!");
+  }
+ }catch(e){}
+}
+</script>
+
+</body>
+  </html>
